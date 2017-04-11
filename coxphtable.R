@@ -1,7 +1,7 @@
 #################################################################
 # Function to print tables from a cox.ph object.
 # aAuthor : koen.vanbrabant@kuleuven.be
-# Date : 07-04-2017
+# Date : 11-04-2017
 ###############################################################
 
 coxph_table = function(data=data,fit=fit){
@@ -26,6 +26,8 @@ coxph_table = function(data=data,fit=fit){
             
             table[[i]][1,1] = ifelse(label(data[,model_variables[i]])=='',
                 model_variables[i],label(data[,model_variables[i]]))
+            
+            table[[i]][2:nrow(table[[i]]),1] = ''
             
             table[[i]][,2] = levels(data[,model_variables[i]]) 
             
