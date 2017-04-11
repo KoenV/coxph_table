@@ -4,7 +4,7 @@
 # Date : 11-04-2017
 ###############################################################
 
-coxph_table = function(data=data,fit=fit){
+coxph_table = function(data=data,fit=fit,roundings=3){
     
     require(Hmisc)
     
@@ -36,10 +36,10 @@ coxph_table = function(data=data,fit=fit){
             spfc_smmry = grepl(model_variables[i],rownames(summary_table))
             
             table[[i]][2:nrow(table[[i]]),3] = round(
-                summary_table[spfc_smmry,1],2)
+                summary_table[spfc_smmry,1],roundings)
             
-            lower_ci = round(summary_table[spfc_smmry,3],2)
-            upper_ci = round(summary_table[spfc_smmry,4],2)
+            lower_ci = round(summary_table[spfc_smmry,3],roundings)
+            upper_ci = round(summary_table[spfc_smmry,4],roundings)
             
             table[[i]][2:nrow(table[[i]]),4] = paste0(lower_ci,';',upper_ci)
             
@@ -64,10 +64,10 @@ coxph_table = function(data=data,fit=fit){
             
             spfc_smmry = grepl(model_variables[i],rownames(summary_table))
             
-            table[[i]][1,3] = round(summary_table[spfc_smmry,1],2)
+            table[[i]][1,3] = round(summary_table[spfc_smmry,1],roundings)
             
-            lower_ci = round(summary_table[spfc_smmry,3],2)
-            upper_ci = round(summary_table[spfc_smmry,4],2)
+            lower_ci = round(summary_table[spfc_smmry,3],roundings)
+            upper_ci = round(summary_table[spfc_smmry,4],roundings)
             
             table[[i]][1,4] = paste0(lower_ci,';',upper_ci)
 
