@@ -32,7 +32,7 @@ coxph_table = function(data=data,fit=fit,roundings=3){
                 model_variables[i],label(data[,model_variables[i]]))
             
             # @ overal p-value
-            test = Anova(mf_timevar_ir.fit2,test.statistic = 'Wald')
+            test = Anova(fit,test.statistic = 'Wald')
             
             logical_row = grepl(model_variables[i],rownames(test))
 
