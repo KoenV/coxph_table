@@ -9,6 +9,7 @@ coxph_table = function(data=data,fit=fit,roundings=3){
     
     require(Hmisc)
     require(survival)
+    require(car)
     
     model_variables = attr(fit$terms,"term.labels")
     
