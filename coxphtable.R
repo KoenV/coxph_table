@@ -4,6 +4,7 @@
 # Date : 12-04-2017
 ###############################################################
 
+
 coxph_table = function(data=data,fit=fit,roundings=3){
     
     require(Hmisc)
@@ -29,10 +30,15 @@ coxph_table = function(data=data,fit=fit,roundings=3){
             table[[i]][1,1] = ifelse(label(data[,model_variables[i]])=='',
                 model_variables[i],label(data[,model_variables[i]]))
             
-            table[[i]][1,5] = format_pval.table(
-                summary(update(fit,as.formula(paste0('~',
-                model_variables[i]))))$sctest[3])
+            # @ overal p-value
+            test = Anova(mf_timevar_ir.fit2,test.statistic = 'Wald')
             
+            logical_row = grepl(model_variables[i],rownames(test))
+
+    
+            table[[i]][1,5] = format_pval.table(test[logical_row,3])
+            
+        
             table[[i]][1,2:4] = ''
             
             table[[i]][2:nrow(table[[i]]),1] = ''
